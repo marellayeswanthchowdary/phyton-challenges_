@@ -1,0 +1,29 @@
+code :
+Student_ID=input("Enter the ID of the student:")
+Email_ID=input("Enter the email id:")
+Password=input("Enter the password:")
+Referral_code=input("Enter the referral code:")
+p=False
+q=False
+r=False
+s=False
+if Student_ID[0:3]=="CSE" and Student_ID[3]=='-' and Student_ID[4:7].isdigit():
+    p=True
+if '@'in Email_ID and '.'in Email_ID and Email_ID[0]!='@' and Email_ID[len(Email_ID)-1]!='@' and Email_ID[-4:]=='.edu':
+    q=True
+if len(Password)>=8 and 'A'<=Password[0]<='Z' and ('0'in Password or '1'in Password or '2'in Password or '3'in Password or '4'in Password or '5'in Password or '6'in Password or '7'in Password or '8'in Password or '9'in Password):
+    r=True
+if Referral_code[0:3]=="REF" and '0'<=Referral_code[3:5]<='9' and Referral_code[5]=='@':
+    s=True
+if p=q=r=s=True:
+    print("APPROVED")
+else :
+    print("REJECTED")
+
+algorithm :
+1.	Start
+2.	Take four variables namely Student_ID, Email_ID, Password, Referral_code of datatype string each of them and take input from the user using input function.
+3.	Consider four variables p, q, r, s of integer datatype and initialize them with zero.
+4.	Use if conditional statement to write the logic for each of the Student_ID, Email_ID, Password, Referral_code. If the conditions give true then update the values of each p, q, r, s to One.
+5.	Now using if-else conditional statement: if all of the p, q, r, s are equal to one print the Credential is Approved else print Rejected.
+6.	End
