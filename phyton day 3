@@ -1,0 +1,46 @@
+name = "marellayeswanthchowdary"
+L = len(name.replace(" ", ""))
+M = L % 3
+n = int(input("Enter no of reporting teams: "))
+resources = []
+for i in range(n):
+    resources.append(int(input(f"Enter no of resources of team {i+1}: ")))
+low_demand = []
+moderate_demand = []
+high_demand = []
+invalid_requests = []
+valid = 0
+for value in resources:
+    if value < 0:
+        invalid_requests.append(value)
+    elif value == 0:
+        valid += 1
+    elif 1 <= value <= 20:
+        low_demand.append(value)
+        valid += 1
+    elif 21 <= value <= 50:
+        moderate_demand.append(value)
+        valid += 1
+    else:
+        high_demand.append(value)
+        valid += 1
+print("\nL =", L)
+print("M =", M)
+if M == 0:
+    print("Case 1: M = 0 Low demand removed")
+    print("No of requests removed :", len(low_demand))
+    low_demand = []
+elif M == 1:
+    print("Case 2: M = 1 High demand removed")
+    print("No of requests removed:", len(high_demand))
+    high_demand = []
+elif M == 2:
+    print("Case 3: M = 2 Moderate demand removed")
+    print("No of requests removed :", len(moderate_demand))
+    moderate_demand = []
+print("\nThe list of resources after personalization are:")
+print("Low demand:", low_demand)
+print("Moderate demand:", moderate_demand)
+print("High demand:", high_demand)
+print("Invalid requests:", invalid_requests)
+print("No of valid requests:", valid)
