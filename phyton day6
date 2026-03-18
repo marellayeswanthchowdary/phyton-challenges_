@@ -1,0 +1,54 @@
+m = int(input("enter number of values to be taken: "))
+num = [0] * m
+
+for i in range(m):
+    num[i] = int(input("enter number: "))
+
+cate = {
+    "invalid": [i for i in num if i <= 0],
+    "normal": [i for i in num if i > 0 and i <= 500],
+    "large": [i for i in num if i > 500 and i <= 2000],
+    "high_risk": [i for i in num if i > 2000],
+}
+
+valid = [i for i in num if i > 0]
+freq = len(valid)
+total = sum(valid)
+
+if freq > 6:
+    print("Frequent Transactions")
+
+if total > 7000:
+    print("Large Spending")
+
+if len(cate["high_risk"]) >= 2:
+    print("Suspicious Pattern")
+
+risk = "Low Risk"
+score = 0
+
+if freq > 6:
+    score += 3
+if total > 7000:
+    score += 4
+if len(cate["high_risk"]) >= 2:
+    score += 5
+
+if score >= 8:
+    risk = "High Risk"
+elif score >= 4:
+    risk = "Moderate Risk"
+else:
+    risk = "Low Risk"
+
+print("Invalid:", cate["invalid"])
+print("Normal:", cate["normal"])
+print("Large:", cate["large"])
+print("High Risk:", cate["high_risk"])
+
+print("Total transaction value:", total)
+print("Number of transactions:", len(num))
+print("Risk Classification:", risk)
+
+summary = (len(num), freq, total, risk)
+print("Summary:", summary)
