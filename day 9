@@ -1,0 +1,51 @@
+import copy
+def create_inventory():
+    return [       {"item":"Laptop","details":{"price":50000,"stock":10,"supplier":{"rating":4.5}}},
+      {"item":"Phone","details":{"price":20000,"stock":25,"supplier":{"rating":4.2}}}
+    ]
+
+def apply_discount(data,roll):
+    n=len(data)
+    idx=roll % n
+    for i in range(n):
+        if i==idx:
+            data[i]["details"]["price"]=int(data[i]["details"]["price"]*0.9)
+            data[i]["details"]["stock"]+=5
+    return data
+
+def compare_data(orig,mod):
+    changed=[]
+    unchanged=[]
+    for i in range(len(orig)):
+        if orig[i]!=mod[i]:
+            changed.append(orig[i]["item"])
+        else:
+            unchanged.append(orig[i]["item"])
+    return changed,unchanged
+
+roll=2411001591
+
+inventory=create_inventory()
+
+shallow=inventory.copy()
+deep=copy.deepcopy(inventory)
+
+apply_discount(shallow,roll)
+apply_discount(deep,roll)
+
+print("Original:",inventory)
+print("Shallow Copy:",shallow)
+print("Deep Copy:",deep)
+
+sc,su=compare_data(inventory,shallow)
+dc,du=compare_data(inventory,deep)
+
+print("\nDifferences Observed:")
+print("Shallow Changed:",sc)
+print("Shallow Unchanged:",su)
+print("Deep Changed:",dc)
+print("Deep Unchanged:",du)
+
+print("\nTuple Summary:")
+print("Shallow:",(len(sc),len(su)))
+print("Deep:",(len(dc),len(du))) 
